@@ -7,23 +7,6 @@
     <link href='https://fonts.googleapis.com/css?family=Sansita+One' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen,print">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen,print">
-
-
-
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-33766650-1']);
-        _gaq.push(['_trackPageview']);
-
-        (function () {
-            var ga = document.createElement('script');
-            ga.type = 'text/javascript';
-            ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
 </head>
 <body>
 <div id="banner"><a href="https://github.com/danielkummer/git-flow-cheatsheet">Fork me on GitHub</a></div>
@@ -33,15 +16,6 @@
 
     <p id="author">
         created by <a href="http://twitter.com/0r1g4m14dd1c7">Daniel Kummer</a> fork developed for <a href="https://crosscomm.com">CrossComm</a>
-        <script>!function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (!d.getElementById(id)) {
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "//platform.twitter.com/widgets.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }
-        }(document, "script", "twitter-wjs");</script>
     </p>
     <p id="desc">efficient branching using git-flow by <a href="http://nvie.com/">Vincent Driessen</a></p>
     <!--
@@ -126,12 +100,6 @@
         <blockquote>
             $ apt-get install git-flow
         </blockquote>
-        <h3>Windows (Cygwin)</h3>
-        <blockquote>
-            $ wget -q -O - --no-check-certificate
-            https://raw.github.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh install stable | bash
-        </blockquote>
-        <p>You need wget and util-linux to install git-flow.</p>
     </div>
     <div class="col-2">
         <p>
@@ -207,7 +175,7 @@
         <h3>Publish the feature</h3>
 
         <p>
-            Publish a feature to the remote server so it can be used by other users.
+            Push a feature to GitHub so it can be used by other users.
         </p>
 
         <blockquote>
@@ -215,7 +183,6 @@
         </blockquote>
     </div>
     <div class="col-2">
-        <div class="feature-publish"></div>
     </div>
 </div>
 
@@ -226,6 +193,15 @@
         <p>
             When working on your feature, make commits to this branch. Push them to GitHub.
         </p>
+        <blockquote>
+            git add -p
+        </blockquote>
+        <blockquote>
+            git commit
+        </blockquote>
+        <blockquote>
+            git push
+        </blockquote>
     </div>
     <div class="col-2">
     </div>
@@ -257,11 +233,14 @@
             Finish the development of a feature after being reviewed.
         </p>
         <ul>
-            <li>Merges my-feature-name into 'develop'</li>
-            <li>Removes the feature branch</li>
-            <li>Do not use 'git flow feature finish', use merge buttons on GitHub</li>
+            <li>Merge my-feature-name into 'develop'</li>
+            <li>Use Github PR buttons. Do not use 'git flow feature finish'</li>
+            <li>Branch should be deleted from remote (enable in github project settings)</li>
         </ul>
 
+        <blockquote>
+            Click Merge Pull Request in GitHub
+        </blockquote>
     </div>
     <div class="col-2">
         <div class="feature-end"></div>
@@ -275,24 +254,16 @@
         <h3>Working on a published feature</h3>
 
         <p>
-            Get a feature published by another user.
+            Get a feature pushed to GitHub by another user.
         </p>
 
         <blockquote>
             git flow feature pull origin my-feature-name
         </blockquote>
 
-        <p>
-            Though, you probably want to use track.
-        </p>
-
-        <blockquote>
-            git flow feature track my-feature-name
-        </blockquote>
-
     </div>
     <div class="col-2">
-        <div class="feature-pull"></div>
+
     </div>
 </div>
 
@@ -309,11 +280,15 @@
     <div class="col-1">
         <h3>Start a release</h3>
 
-        <p>To start a release, use the git flow release command. It creates a release branch created from the 'develop' branch.</p>
+        <p>To start a release, use the git flow release command. It creates a release branch from the 'develop' branch.</p>
+        <p>Typically, we should be using <a href="https://devhints.io/semver">semver</a> versioning.  We may optionally include labels in the tag that correspond to app store builds or anything else that makes our lives easier.</p>
         <blockquote>
-            git flow release start v1.0.0 [BASE-HASH]
+            git flow release start v9.1.21
         </blockquote>
-        <p>You can optionally supply a commit hash to start the release from if you are building a release from an older commit on develop. The commit must be on the 'develop' branch.</p>
+        <p>You can optionally set a commit hash to start the release from any commit on 'develop'.  This is useful to build a release from any point in develop's history.</p>
+        <blockquote>
+            git flow release start v9.1.21 [HASH]
+        </blockquote>
 
     </div>
     <div class="col-2">
@@ -325,18 +300,14 @@
 <div class="scrollblock">
     <div class="col-1">
         <h3>Publish the release</h3>
-        <p>Publish the release branch to allow release commits by others.</p>
+        <p>Push the release branch to GitHub to allow finalizing commits by others.</p>
         <blockquote>
-            git flow release publish RELEASE
-        </blockquote>
-        <p>You'll want to track a remote release with using</p>
-        <blockquote>
-            git flow release track RELEASE
+            git flow release publish v9.1.21
         </blockquote>
 
     </div>
     <div class="col-2">
-        <div class="feature-publish"></div>
+
     </div>
 </div>
 
@@ -346,15 +317,18 @@
 
         <p>Finishing a release is one of the big steps in git branching. It performs several actions:</p>
         <ul>
-            <li>Merges the release branch back into 'master'</li>
+            <li>Merges the release branch back into 'main'</li>
             <li>Tags the release with its name</li>
             <li>Back-merges the release into 'develop'</li>
             <li>Removes the release branch</li>
         </ul>
         <blockquote>
-            git flow release finish RELEASE
+            git flow release finish v9.1.21
         </blockquote>
-        <p>Don't forget to push your tags with <code>git push origin --tags</code></p>
+        <p>Don't forget to push your tags.</p>
+        <blockquote>
+            git push origin --tags
+        </blockquote>
 
     </div>
     <div class="col-2">
@@ -367,9 +341,10 @@
     <h2><a name="hotfixes" href="#hotfixes">Hotfixes</a></h2>
 
     <ul>
+        <li>Use feature branches instead, if possible.</li>
         <li>Hotfixes arise from the necessity to act immediately upon an undesired state of a live production version
         </li>
-        <li>May be branched off from the corresponding tag on the master branch that marks the production version.</li>
+        <li>May be branched off from the corresponding tag on the main branch that marks the production version.</li>
     </ul>
     <p class="divider">&#9733; &#9733; &#9733;</p>
     <div class="col-1">
@@ -377,9 +352,10 @@
 
         <p>Like the other git flow commands, a hotfix is started with</p>
         <blockquote>
-            git flow hotfix start VERSION [BASENAME]
+            git flow hotfix start security-fix v3.1.4<br/><br/>
+            git flow hotfix start HOTFIX_NAME [RELEASE]
         </blockquote>
-        <p>The version argument hereby marks the new hotfix release name. Optionally you can specify a basename to start from.</p>
+        <p>The HOTFIX_NAME argument is used for the branch name. Optionally you can specify a RELEASE to start from.  Otherwise, the default is the HEAD of main</p>
     </div>
     <div class="col-2">
         <div class="hotfix-start"></div>
@@ -388,11 +364,25 @@
 
 <div class="scrollblock">
     <div class="col-1">
+        <h3>Publish a hotfix</h3>
+
+        <p>You're seeing the pattern here right? Push the hotfix to GitHub.</p>
+        <blockquote>
+            git flow hotfix publish HOTFIX_NAME
+        </blockquote>
+    </div>
+    <div class="col-2">
+        <div class="hotfix-end"></div>
+    </div>
+</div>
+
+<div class="scrollblock">
+    <div class="col-1">
         <h3>Finish a hotfix</h3>
 
-        <p>By finishing a hotfix it gets merged back into develop and master. Additionally the master merge is tagged with the hotfix version.</p>
+        <p>By finishing a hotfix it gets merged back into develop AND main. Additionally the main merge is tagged with the hotfix version.</p>
         <blockquote>
-            git flow hotfix finish VERSION
+            git flow hotfix finish HOTFIX_NAME
         </blockquote>
     </div>
     <div class="col-2">
@@ -415,17 +405,13 @@
 </div>
 
 <div class="scrollblock">
-    <h2>Backlog</h2>
+    <h2>Notes</h2>
     <p class="divider">&#9733; &#9733; &#9733;</p>
     <ul>
         <li>Not all available commands are covered here, only the most important ones</li>
-        <li>You can still use git and all its commands normally as you know them, git flow is only a tooling
-            collection
+        <li>You can still use git and all its commands normally as you know them, git flow is just sugar on top of normal git commands.
         </li>
-        <li>The 'support' feature is still beta, using it is not advised</li>
-        <li>If you'd like to supply translations I'd be happy to integrate them</li>
     </ul>
-    <p class="divider">&#9733; &#9733; &#9733;</p>
 </div>
 </div>
 
