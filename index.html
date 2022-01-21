@@ -220,6 +220,10 @@
             <li>Assign to everyone who can review.</li>
             <li>Link the PR in your project's Slack channel.</li>
         </ul>
+        <p>If you have <a href="https://cli.github.com/manual/installation">gh installed</a>, here's a quick way to create a PR:</p>
+        <blockquote>
+            gh pr create --base develop
+        </blockquote>
     </div>
     <div class="col-2">
     </div>
@@ -342,20 +346,21 @@
 
     <ul>
         <li>Use feature branches instead, if possible.</li>
-        <li>Hotfixes arise from the necessity to act immediately upon an undesired state of a live production version
-        </li>
+        <li>Hotfixes arise from the necessity to act immediately upon an undesired state of a live production version</li>
         <li>May be branched off from the corresponding tag on the main branch that marks the production version.</li>
     </ul>
     <p class="divider">&#9733; &#9733; &#9733;</p>
+
+</div>
+
+<div class="scrollblock">
     <div class="col-1">
-        <h3>git flow hotfix start</h3>
+        <h3>Start a hotfix</h3>
 
         <p>Like the other git flow commands, a hotfix is started with</p>
         <blockquote>
-            git flow hotfix start security-fix v3.1.4<br/><br/>
             git flow hotfix start HOTFIX_NAME [RELEASE]
         </blockquote>
-        <p>The HOTFIX_NAME argument is used for the branch name. Optionally you can specify a RELEASE to start from.  Otherwise, the default is the HEAD of main</p>
     </div>
     <div class="col-2">
         <div class="hotfix-start"></div>
@@ -372,7 +377,6 @@
         </blockquote>
     </div>
     <div class="col-2">
-        <div class="hotfix-end"></div>
     </div>
 </div>
 
