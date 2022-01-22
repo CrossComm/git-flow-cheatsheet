@@ -69,10 +69,7 @@
 <div class="scrollblock">
     <h2>Basic tips</h2>
     <ul>
-        <li>Git flow provides excellent command line help and output. Read it carefully to see what's happening...</li>
-        <li>The macOS/Windows Client <a href="http://www.sourcetreeapp.com/">Sourcetree</a> is an excellent git gui and provides
-            git-flow support
-        </li>
+        <li>Git flow commands print useful help and output. Read, pay attention to the output.</li>
         <li>Git-flow is a merge based solution. It doesn't rebase feature branches.</li>
     </ul>
     <p class="divider">&#9733; &#9733; &#9733;</p>
@@ -80,7 +77,7 @@
 
 
 <div class="scrollblock">
-    <h2><a name="setup" href="#setup">Setup</a></h2>
+    <h2><a name="install" href="#install">Install Helpers</a></h2>
     <ul>
         <li>You need a working git installation as prerequisite.</li>
         <li>Git flow works on macOS, Linux and Windows</li>
@@ -88,17 +85,13 @@
     <p class="divider">&#9733; &#9733; &#9733;</p>
     <div class="col-1">
         <h3>macOS</h3>
-        <span>Homebrew</span>
+        <span>Git Flow Helper</span>
         <blockquote>
-            $ brew install git-flow-avh
+            brew install git-flow-avh
         </blockquote>
-        <span>Macports</span>
+        <span>GitHub CLI</span>
         <blockquote>
-            $ port install git-flow-avh
-        </blockquote>
-        <h3>Linux</h3>
-        <blockquote>
-            $ apt-get install git-flow
+            brew install gh
         </blockquote>
     </div>
     <div class="col-2">
@@ -108,6 +101,18 @@
         </p>
         <img src="img/download.png" alt="install git-flow"/>
     </div>
+</div>
+
+<div class="scrollblock">
+    <h2><a name="configure" href="#configure">Configure</a></h2>
+    <p class="divider">&#9733; &#9733; &#9733;</p>
+        <blockquote>
+            git config --global gitflow.feature.finish.push yes<br />
+            git config --global gitflow.bugfix.finish.push yes<br />
+            git config --global gitflow.hotfix.finish.push yes<br />
+        </blockquote>
+        <span>This is necessary so that 'finish' commands show up as merged in GitHub.</span>
+        <!-- SEE https://github.com/petervanderdoes/gitflow-avh/issues/201#issuecomment-508076660 -->
 </div>
 
 <div class="scrollblock">
@@ -212,7 +217,7 @@
         <h3>Pull request review</h3>
 
         <p>
-            Have your teammates review your code for accuracy and quality.
+            Have your team review your code for accuracy and quality.
         </p>
 
         <ul>
@@ -220,7 +225,6 @@
             <li>Assign to everyone who can review.</li>
             <li>Link the PR in your project's Slack channel.</li>
         </ul>
-        <p>If you have <a href="https://cli.github.com/manual/installation">gh installed</a>, here's a quick way to create a PR:</p>
         <blockquote>
             gh pr create --base develop
         </blockquote>
@@ -238,12 +242,12 @@
         </p>
         <ul>
             <li>Merge my-feature-name into 'develop'</li>
-            <li>Use Github PR buttons. Do not use 'git flow feature finish'</li>
-            <li>Branch should be deleted from remote (enable in github project settings)</li>
+            <li>Don't Use Github PR buttons.</li>
+            <li>If the PR shows closed instead of merged, check the settings shown above in <a href="#configure">configure</a></li>
         </ul>
 
         <blockquote>
-            Click Merge Pull Request in GitHub
+            git flow feature finish
         </blockquote>
     </div>
     <div class="col-2">
@@ -317,6 +321,19 @@
 
 <div class="scrollblock">
     <div class="col-1">
+        <h3>Create a release pull request</h3>
+        <p>Use github to collaborate and and review releases</p>
+
+        <blockquote>
+            gh pr create --base main
+        </blockquote>
+    </div>
+    <div class="col-2">
+    </div>
+</div>
+
+<div class="scrollblock">
+    <div class="col-1">
         <h3>Finish up a release</h3>
 
         <p>Finishing a release is one of the big steps in git branching. It performs several actions:</p>
@@ -382,6 +399,19 @@
 
 <div class="scrollblock">
     <div class="col-1">
+        <h3>Create a hotfix pull request</h3>
+        <p>Use github to collaborate and and review hotfixes</p>
+
+        <blockquote>
+            gh pr create --base main
+        </blockquote>
+    </div>
+    <div class="col-2">
+    </div>
+</div>
+
+<div class="scrollblock">
+    <div class="col-1">
         <h3>Finish a hotfix</h3>
 
         <p>By finishing a hotfix it gets merged back into develop AND main. Additionally the main merge is tagged with the hotfix version.</p>
@@ -405,6 +435,19 @@
 
 <div class="scrollblock">
     <h2><a name="commands" href="#commands">Commands</a></h2>
+    <p>Get Help.</p>
+    <blockquote>
+        gh help
+    </blockquote>
+
+    <blockquote>
+        git flow help
+    </blockquote>
+
+    <blockquote>
+        git flow feature help
+    </blockquote>
+    <p>Quick list of commands</p>
     <img src="img/git-flow-commands.png" alt="git-flow commands"/>
 </div>
 

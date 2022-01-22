@@ -150,7 +150,7 @@ code {
 
 .lines-small-end {
     width: 300px;
-    height: 950px;
+    height: 1250px;
     background-repeat: repeat-y;
     background: url("../img/lines-small.png");
     position: absolute;
@@ -160,7 +160,7 @@ code {
 
 .lines-big {
     width: 300px;
-    height: 5355px;
+    height: 5805px;
     background-repeat: repeat-y;
     background: url("../img/lines-big.png");
     position: absolute;
